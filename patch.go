@@ -2,6 +2,7 @@ package goutils
 
 import "reflect"
 
+// MapExists check if all given items Exist in map
 func MapExists(m map[string]interface{}, items ...string) bool {
 	if len(items) == 0 {
 		return true
@@ -21,6 +22,7 @@ func MapExists(m map[string]interface{}, items ...string) bool {
 	return false
 }
 
+// SliceExists check if given item Exist in slice
 func SliceExists(slice interface{}, item interface{}) bool {
 	s := reflect.ValueOf(slice)
 
