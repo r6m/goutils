@@ -1,6 +1,7 @@
 package goutils
 
 import (
+	"encoding/json"
 	"errors"
 	"strconv"
 	"strings"
@@ -16,7 +17,7 @@ func ToInt(i interface{}) (int, error) {
 		return vint, nil
 	} else if vstring, sok := v.(string); sok {
 		if vstring == "" {
-			return 0, errors.New("could not convert string to int")
+			return 0, errors.New("could not convert empty string to int")
 		}
 		return strconv.Atoi(vstring)
 	} else if vfloat, fok := v.(float64); fok {
@@ -24,17 +25,35 @@ func ToInt(i interface{}) (int, error) {
 		return strconv.Atoi(FloatToString(vfloat, false))
 	} else if vint64, ok := v.(int64); ok {
 		return int(vint64), nil
+	} else if vJsonNumber, ok := v.(json.Number); ok {
+		return strconv.Atoi(string(vJsonNumber))
 	}
 
 	return 0, errors.New("could not convert to int")
 }
 
+// ToInt64 convert interface to int64
 func ToInt64(i interface{}) (int64, error) {
-	n, err := ToInt(i)
-	if err != nil {
-		return 0, err
+	if i == nil {
+		return 0, errors.New("input is nil")
 	}
-	return int64(n), nil
+	v := i
+	if vint, ok := v.(int); ok {
+		return int64(vint), nil
+	} else if vstring, sok := v.(string); sok {
+		if vstring == "" {
+			return 0, errors.New("could not convert empty string to int64")
+		}
+		return strconv.ParseInt(vstring, 10, 64)
+	} else if vfloat, fok := v.(float64); fok {
+		return strconv.ParseInt(FloatToString(vfloat, false), 10, 64)
+	} else if vint64, ok := v.(int64); ok {
+		return vint64, nil
+	} else if vJsonNumber, ok := v.(json.Number); ok {
+		return strconv.ParseInt(string(vJsonNumber), 10, 64)
+	}
+
+	return 0, errors.New("could not convert to int64")
 }
 
 func FloatToString(f float64, with bool) string {
