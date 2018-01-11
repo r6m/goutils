@@ -40,5 +40,6 @@ TimeSameMonth(t1, t2 time.Time) bool
 TimeSameYear(t1, t2 time.Time) bool
 TimeBeginningOfDay(time.Time, string) time.Time
 TimeEndOfDay(time.Time, string) time.Time
+TimeInLoc(time.Time, string) time.Time
 ```
 

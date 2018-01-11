@@ -40,3 +40,11 @@ func TimeEndOfDay(t time.Time, location string) time.Time {
 	endOfDay := time.Date(t.Year(), t.Month(), t.Day(), 23, 59, 59, 999999999, loc)
 	return endOfDay
 }
+
+func TimeInLoc(t time.Time, location string) time.Time {
+	loc, err := time.LoadLocation(location)
+	if err != nil {
+		panic(err)
+	}
+	return t.In(loc)
+}
