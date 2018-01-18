@@ -38,3 +38,11 @@ func SliceExists(slice interface{}, item interface{}) bool {
 
 	return false
 }
+
+func StringPart(str string, from, to int) string {
+	strRune := []rune(str)
+	if len(strRune) >= to {
+		return string(strRune[from:to])
+	}
+	return string(strRune[from:len(strRune)])
+}

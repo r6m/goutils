@@ -27,6 +27,7 @@ ToBool(interface{}) bool // "true", "false", "1", "0", "1.0", true
 // Go Patch
 MapExists(map[string]interface{}, []string) bool
 MapExists(interface{}, interface{}) bool // slice could be any type of slice
+StringPart(string, from, to int) string // turns string into rune and returns given part as string
 
 // Random
 RandInt(min, max int) int
