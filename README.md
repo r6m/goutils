@@ -36,6 +36,8 @@ RandString(length int) string
 
 // Time
 TimeIsToday(time.Time) bool
+TimeIsTodayInLoc(time.Time, loc string) bool
+TimeIsTodayTimes(time.Time, time.Time) bool
 TimeSameDay(t1, t2 time.Time) bool
 TimeSameMonth(t1, t2 time.Time) bool
 TimeSameYear(t1, t2 time.Time) bool

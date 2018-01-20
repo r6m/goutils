@@ -8,6 +8,16 @@ func TimeIsToday(t time.Time) bool {
 	return TimeSameDay(t1, t)
 }
 
+func TimeIsTodayTimes(t1, t2 time.Time) bool {
+	return TimeSameDay(t1, t2)
+}
+
+// IsToday checks if given Time is Today
+func TimeIsTodayInLoc(t time.Time, location string) bool {
+	t2 := TimeInLoc(time.Now(), location)
+	return TimeSameDay(t, t2)
+}
+
 // TimeSameDay checks if given times has same day
 func TimeSameDay(t1, t2 time.Time) bool {
 	return t1.Year() == t2.Year() && t1.YearDay() == t2.YearDay()
