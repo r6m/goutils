@@ -2,7 +2,6 @@
 
 Common functions
 
-
 ### Installing
 
 ```bash
@@ -13,7 +12,7 @@ go get -u github.com/rezam90/goutils
 
 ```go
 import "github.com/rezam90/goutils"
-``` 
+```
 
 #### functions
 
@@ -44,5 +43,8 @@ TimeSameYear(t1, t2 time.Time) bool
 TimeBeginningOfDay(time.Time, string) time.Time
 TimeEndOfDay(time.Time, string) time.Time
 TimeInLoc(time.Time, string) time.Time
-```
 
+// JWT
+VerifyToken(tokenString string, secretBytes []byte) (jwt.MapClaims, error)
+GenerateToken(claims jwt.MapClaims, secretBytes []byte) string
+```
